@@ -42,21 +42,12 @@ export function ProductCard({ product, artisanName, className }: ProductCardProp
       <Link href={`/products/${product.id}`} className="block">
         <div className="relative">
           <div className="w-full aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-400 relative">
-            {product.image ? (
-              <Image 
-                src={product.image || `/images/${product.name.replace(/\s+/g, '-')}.jpg`}
-                alt={product.name}
-                fill
-                className="object-cover"
-              />
-            ) : (
-              <Image 
-                src={`/images/${product.name.replace(/\s+/g, ' ')}.jpg`}
-                alt={product.name}
-                fill
-                className="object-cover"
-              />
-            )}
+            <Image 
+              src={product.image || `/images/${product.name}.jpg`}
+              alt={product.name}
+              fill
+              className="object-cover"
+            />
             {!product.inStock && (
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
                 <span className="text-white font-semibold px-3 py-1 bg-black/40 rounded-md">Out of Stock</span>

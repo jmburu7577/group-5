@@ -208,7 +208,7 @@ export const latestProducts: Product[] = [
     name: 'Handcrafted Silver Necklace',
     price: 75.00,
     category: 'Jewelry',
-    image: '/images/product1.jpg',
+    image: '/images/Handcrafted Silver Necklace.jpg',
     artisanId: 'artisan1',
     description: 'Elegant sterling silver necklace with intricate Celtic knot design. Each piece is hand-forged and polished to perfection.',
     materials: ['Sterling Silver', 'Natural Gemstones'],
@@ -220,14 +220,14 @@ export const latestProducts: Product[] = [
     totalReviews: 23,
     tags: ['handmade', 'silver', 'celtic', 'elegant', 'gift'],
     createdAt: '2024-01-15',
-    images: ['/images/product1.jpg', '/images/product1-2.jpg', '/images/product1-3.jpg']
+    images: ['/images/Handcrafted Silver Necklace.jpg']
   },
   {
     id: 'product2',
     name: 'Ceramic Coffee Mug Set',
     price: 45.00,
     category: 'Pottery',
-    image: '/images/product2.jpg',
+    image: '/images/Ceramic Coffee Mug Set.jpg',
     artisanId: 'artisan2',
     description: 'Set of two handthrown ceramic mugs with unique glazing. Perfect for your morning coffee ritual.',
     materials: ['Stoneware Clay', 'Food-safe Glaze'],
@@ -239,14 +239,14 @@ export const latestProducts: Product[] = [
     totalReviews: 18,
     tags: ['ceramic', 'coffee', 'set', 'kitchen', 'functional'],
     createdAt: '2024-02-01',
-    images: ['/images/product2.jpg', '/images/product2-2.jpg']
+    images: ['/images/Ceramic Coffee Mug Set.jpg']
   },
   {
     id: 'product3',
     name: 'Woven Wall Hanging',
     price: 120.00,
     category: 'Textiles',
-    image: '/images/product3.jpg',
+    image: '/images/Woven Wall Hanging.jpg',
     artisanId: 'artisan3',
     description: 'Beautiful macrame wall hanging made with organic cotton rope. Adds natural texture to any space.',
     materials: ['Organic Cotton Rope', 'Wooden Dowel'],
@@ -258,14 +258,14 @@ export const latestProducts: Product[] = [
     totalReviews: 31,
     tags: ['macrame', 'wall-art', 'boho', 'organic', 'home-decor'],
     createdAt: '2024-01-28',
-    images: ['/images/product3.jpg', '/images/product3-2.jpg', '/images/product3-3.jpg']
+    images: ['/images/Woven Wall Hanging.jpg']
   },
   {
     id: 'product4',
     name: 'Wooden Carved Bowl',
     price: 60.00,
     category: 'Woodwork',
-    image: '/images/product4.jpg',
+    image: '/images/Wooden Carved Bowl.jpg',
     artisanId: 'artisan1',
     description: 'Hand-carved wooden bowl made from sustainable cherry wood. Perfect for serving or decoration.',
     materials: ['Cherry Wood', 'Food-safe Finish'],
@@ -277,7 +277,7 @@ export const latestProducts: Product[] = [
     totalReviews: 14,
     tags: ['wood', 'carved', 'sustainable', 'kitchen', 'serving'],
     createdAt: '2024-02-10',
-    images: ['/images/product4.jpg', '/images/product4-2.jpg']
+    images: ['/images/Wooden Carved Bowl.jpg']
   },
 ];
 
@@ -288,7 +288,7 @@ export const allProducts: Product[] = [
     name: 'Hand-painted Silk Scarf',
     price: 90.00,
     category: 'Textiles',
-    image: '/images/product5.jpg',
+    image: '/images/Hand-painted Silk Scarf.jpg',
     artisanId: 'artisan3',
     description: 'Luxurious silk scarf with hand-painted floral motifs. Each scarf is unique and one-of-a-kind.',
     materials: ['100% Silk', 'Non-toxic Fabric Paint'],
@@ -300,14 +300,14 @@ export const allProducts: Product[] = [
     totalReviews: 12,
     tags: ['silk', 'hand-painted', 'luxury', 'fashion', 'unique'],
     createdAt: '2024-02-05',
-    images: ['/images/product5.jpg', '/images/product5-2.jpg']
+    images: ['/images/Hand-painted Silk Scarf.jpg']
   },
   {
     id: 'product6',
     name: 'Sculpted Clay Figurine',
     price: 55.00,
     category: 'Sculpture',
-    image: '/images/product6.jpg',
+    image: '/images/Sculpted Clay Figurine.jpg',
     artisanId: 'artisan2',
     description: 'Whimsical clay figurine depicting a forest spirit. Hand-sculpted and fired with care.',
     materials: ['Stoneware Clay', 'Ceramic Glaze'],
@@ -319,14 +319,14 @@ export const allProducts: Product[] = [
     totalReviews: 9,
     tags: ['sculpture', 'figurine', 'art', 'ceramic', 'collectible'],
     createdAt: '2024-01-20',
-    images: ['/images/product6.jpg', '/images/product6-2.jpg', '/images/product6-3.jpg']
+    images: ['/images/Sculpted Clay Figurine.jpg']
   },
   {
     id: 'product7',
     name: 'Handcrafted Wooden Jewelry Box',
     price: 85.00,
     category: 'Woodwork',
-    image: '/images/product7.jpg',
+    image: '/images/Handcrafted Wooden Jewelry Box.jpg',
     artisanId: 'artisan4',
     description: 'Elegant wooden jewelry box with intricate inlay work and velvet-lined compartments. Perfect for storing your treasured pieces.',
     materials: ['Walnut Wood', 'Maple Inlay', 'Velvet Lining'],
@@ -338,14 +338,14 @@ export const allProducts: Product[] = [
     totalReviews: 15,
     tags: ['woodwork', 'jewelry-box', 'handcrafted', 'gift', 'storage'],
     createdAt: '2024-02-15',
-    images: ['/images/product7.jpg', '/images/product7-2.jpg']
+    images: ['/images/Handcrafted Wooden Jewelry Box.jpg']
   },
   {
     id: 'product8',
     name: 'Abstract Landscape Painting',
     price: 180.00,
     category: 'Painting',
-    image: '/images/product8.jpg',
+    image: '/images/Abstract Landscape Painting.jpg',
     artisanId: 'artisan5',
     description: 'Vibrant abstract landscape painting inspired by African savannas. Acrylic on canvas with textured elements.',
     materials: ['Acrylic Paint', 'Canvas', 'Texture Medium'],
@@ -357,14 +357,14 @@ export const allProducts: Product[] = [
     totalReviews: 7,
     tags: ['painting', 'abstract', 'landscape', 'wall-art', 'colorful'],
     createdAt: '2024-02-20',
-    images: ['/images/product8.jpg', '/images/product8-2.jpg']
+    images: ['/images/Abstract Landscape Painting.jpg']
   },
   {
     id: 'product9',
     name: 'Recycled Metal Sculpture',
     price: 150.00,
     category: 'Sculpture',
-    image: '/images/product9.jpg',
+    image: '/images/Recycled Metal Sculpture.jpg',
     artisanId: 'artisan6',
     description: 'Contemporary sculpture crafted from recycled metal parts. Each piece tells a story of transformation and renewal.',
     materials: ['Recycled Metal', 'Steel Wire', 'Patina Finish'],
@@ -376,14 +376,14 @@ export const allProducts: Product[] = [
     totalReviews: 11,
     tags: ['sculpture', 'recycled', 'metal', 'contemporary', 'sustainable'],
     createdAt: '2024-02-18',
-    images: ['/images/product9.jpg', '/images/product9-2.jpg']
+    images: ['/images/Recycled Metal Sculpture.jpg']
   },
   {
     id: 'product10',
     name: 'Handwoven Wool Tapestry',
     price: 220.00,
     category: 'Textiles',
-    image: '/images/product10.jpg',
+    image: '/images/Handwoven Wool Tapestry.jpg',
     artisanId: 'artisan3',
     description: 'Intricate handwoven tapestry made with naturally dyed wool. A stunning statement piece for any wall.',
     materials: ['Wool', 'Natural Dyes', 'Cotton Warp'],
@@ -395,7 +395,7 @@ export const allProducts: Product[] = [
     totalReviews: 14,
     tags: ['tapestry', 'weaving', 'wool', 'wall-hanging', 'handwoven'],
     createdAt: '2024-02-12',
-    images: ['/images/product10.jpg', '/images/product10-2.jpg']
+    images: ['/images/Handwoven Wool Tapestry.jpg']
   },
 ];
 
