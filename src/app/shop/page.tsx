@@ -18,6 +18,7 @@ import { Input } from '@/components/ui/input';
 import { Rating } from '@/components/ui/rating';
 import { WishlistButton } from '@/components/ui/wishlist-button';
 import { CompareButton } from '@/components/ui/compare-button';
+import { ProductCard } from '@/components/ui/product-card';
 import { Navbar } from '@/components/ui/navbar';
 import { useComparison } from '@/contexts/ComparisonContext';
 
@@ -336,84 +337,11 @@ export default function ShopPage() {
                 {filteredProducts.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {filteredProducts.map((product) => (
-                            <Card key={product.id} className="card-elevated">
-                                <CardHeader>
-                                    <div className="w-full h-48 bg-gray-200 rounded-md mb-4 flex items-center justify-center relative">
-                                        <span className="text-gray-500">Product Image</span>
-                                        {!product.inStock && (
-                                            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-md">
-                                                <span className="text-white font-semibold">Out of Stock</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <CardTitle className="text-lg line-clamp-2">{product.name}</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-3">
-                                        {/* Price and Category */}
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-2xl font-bold text-green-600">
-                                                ${product.price.toFixed(2)}
-                                            </span>
-                                            <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm">
-                                                {product.category}
-                                            </span>
-                                        </div>
-
-                                        {/* Rating */}
-                                        <Rating
-                                            rating={product.rating}
-                                            totalReviews={product.totalReviews}
-                                            size="sm"
-                                        />
-
-                                        {/* Artisan */}
-                                        <div className="text-sm text-gray-600">
-                                            By: <Link
-                                                href={`/sellers/${product.artisanId}`}
-                                                className="text-blue-600 hover:text-blue-800 underline"
-                                            >
-                                                {getArtisanName(product.artisanId)}
-                                            </Link>
-                                        </div>
-
-                                        {/* Stock Status */}
-                                        <div className="text-sm">
-                                            {product.inStock ? (
-                                                <span className="text-green-600">
-                                                    ✓ In Stock ({product.stockQuantity} available)
-                                                </span>
-                                            ) : (
-                                                <span className="text-red-600">✗ Out of Stock</span>
-                                            )}
-                                        </div>
-
-                                        {/* Action Buttons */}
-                                        <div className="space-y-2">
-                                            <Button
-                                                className="w-full"
-                                                disabled={!product.inStock}
-                                            >
-                                                {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                                            </Button>
-                                            <div className="flex gap-2">
-                                                <WishlistButton
-                                                    productId={product.id}
-                                                    size="md"
-                                                    className="flex-1"
-                                                    showText
-                                                />
-                                                <CompareButton
-                                                    productId={product.id}
-                                                    size="md"
-                                                    className="flex-1"
-                                                    showText
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                            <ProductCard 
+                                key={product.id} 
+                                product={product}
+                                artisanName={getArtisanName(product.artisanId)}
+                            />
                         ))}
                     </div>
                 ) : (

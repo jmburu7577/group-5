@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getArtisanById, getProductsByArtisanId } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { ProductCard } from '@/components/ui/product-card';
 
 interface SellerPageProps {
   params: {
@@ -59,25 +60,11 @@ export default function SellerPage({ params }: SellerPageProps) {
         {products.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
-              <Card key={product.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="w-full h-48 bg-gray-200 rounded-md mb-4 flex items-center justify-center">
-                    <span className="text-gray-500">Product Image</span>
-                  </div>
-                  <CardTitle className="text-lg">{product.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-2xl font-bold text-green-600">
-                      ${product.price.toFixed(2)}
-                    </span>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm">
-                      {product.category}
-                    </span>
-                  </div>
-                  <Button className="w-full">Add to Cart</Button>
-                </CardContent>
-              </Card>
+              <ProductCard 
+                key={product.id} 
+                product={product}
+                artisanName={artisan.name}
+              />
             ))}
           </div>
         ) : (

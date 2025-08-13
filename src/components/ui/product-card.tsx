@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -19,14 +20,15 @@ interface ProductCardProps {
     rating: number;
     totalReviews?: number;
     artisanId: string;
-    artisanName?: string;
     inStock: boolean;
     stockQuantity?: number;
+    image?: string;
   };
+  artisanName?: string;
   className?: string;
 }
 
-export function ProductCard({ product, className }: ProductCardProps) {
+export function ProductCard({ product, artisanName, className }: ProductCardProps) {
   const { addToCart, isInCart, getCartItemQuantity } = useCart();
   
   const handleAddToCart = () => {
@@ -39,8 +41,22 @@ export function ProductCard({ product, className }: ProductCardProps) {
     )}>
       <Link href={`/products/${product.id}`} className="block">
         <div className="relative">
-          <div className="w-full aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-400">
-            Product Image
+          <div className="w-full aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-400 relative">
+            {product.image ? (
+              <Image 
+                src={product.image || `/images/${product.name.replace(/\s+/g, '-')}.jpg`}
+                alt={product.name}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <Image 
+                src={`/images/${product.name.replace(/\s+/g, ' ')}.jpg`}
+                alt={product.name}
+                fill
+                className="object-cover"
+              />
+            )}
             {!product.inStock && (
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
                 <span className="text-white font-semibold px-3 py-1 bg-black/40 rounded-md">Out of Stock</span>
@@ -60,9 +76,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
             {product.name}
           </CardTitle>
         </Link>
-        {product.artisanName && (
+        {artisanName && (
           <Link href={`/sellers/${product.artisanId}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-            by {product.artisanName}
+            by {artisanName}
           </Link>
         )}
       </CardHeader>

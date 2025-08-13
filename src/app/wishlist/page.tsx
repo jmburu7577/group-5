@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Rating } from '@/components/ui/rating';
 import { WishlistButton } from '@/components/ui/wishlist-button';
+import { ProductCard } from '@/components/ui/product-card';
 import { Navbar } from '@/components/ui/navbar';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { allProducts, featuredArtisans } from '@/lib/data';
@@ -64,94 +65,25 @@ export default function WishlistPage() {
                                 <Button size="sm">Add All to Cart</Button>
                                 <Button variant="outline" size="sm">Share Wishlist</Button>
                             </div>
-                        </div>
                     </div>
 
                     {/* Products Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {wishlistProducts.map((product) => (
-                            <Card key={product.id} className="hover:shadow-lg transition-shadow">
-                                <CardHeader>
-                                    <div className="w-full h-48 bg-gray-200 rounded-md mb-4 flex items-center justify-center relative">
-                                        <span className="text-gray-500">Product Image</span>
-                                        {!product.inStock && (
-                                            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-md">
-                                                <span className="text-white font-semibold">Out of Stock</span>
-                                            </div>
-                                        )}
-                                        {/* Wishlist button positioned in top-right */}
-                                        <div className="absolute top-2 right-2">
-                                            <WishlistButton
-                                                productId={product.id}
-                                                size="sm"
-                                            />
-                                        </div>
-                                    </div>
-                                    <CardTitle className="text-lg line-clamp-2">{product.name}</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-3">
-                                        {/* Price and Category */}
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-2xl font-bold text-green-600">
-                                                ${product.price.toFixed(2)}
-                                            </span>
-                                            <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm">
-                                                {product.category}
-                                            </span>
-                                        </div>
-
-                                        {/* Rating */}
-                                        <Rating
-                                            rating={product.rating}
-                                            totalReviews={product.totalReviews}
-                                            size="sm"
-                                        />
-
-                                        {/* Artisan */}
-                                        <div className="text-sm text-gray-600">
-                                            By: <Link
-                                                href={`/sellers/${product.artisanId}`}
-                                                className="text-blue-600 hover:text-blue-800 underline"
-                                            >
-                                                {getArtisanName(product.artisanId)}
-                                            </Link>
-                                        </div>
-
-                                        {/* Stock Status */}
-                                        <div className="text-sm">
-                                            {product.inStock ? (
-                                                <span className="text-green-600">
-                                                    ✓ In Stock ({product.stockQuantity} available)
-                                                </span>
-                                            ) : (
-                                                <span className="text-red-600">✗ Out of Stock</span>
-                                            )}
-                                        </div>
-
-                                        {/* Description Preview */}
-                                        <p className="text-sm text-gray-600 line-clamp-2">
-                                            {product.description}
-                                        </p>
-
-                                        {/* Action Buttons */}
-                                        <div className="flex gap-2">
-                                            <Button
-                                                className="flex-1"
-                                                disabled={!product.inStock}
-                                            >
-                                                {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                                            </Button>
-                                            <Link href={`/products/${product.id}`}>
-                                                <Button variant="outline" size="sm">
-                                                    View Details
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                            <div key={product.id} className="relative">
+                                <div className="absolute top-2 right-2 z-10">
+                                    <WishlistButton
+                                        productId={product.id}
+                                        size="sm"
+                                    />
+                                </div>
+                                <ProductCard 
+                                    product={product}
+                                    artisanName={featuredArtisans.find(a => a.id === product.artisanId)?.name}
+                                />
+                            </div>
                         ))}
+                    </div>
                     </div>
 
                     {/* Recommendations */}

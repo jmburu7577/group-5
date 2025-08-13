@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Rating } from '@/components/ui/rating';
 import { WishlistButton } from '@/components/ui/wishlist-button';
 import { CompareButton } from '@/components/ui/compare-button';
+import { ProductCard } from '@/components/ui/product-card';
 import { Navbar } from '@/components/ui/navbar';
 import { useComparison } from '@/contexts/ComparisonContext';
 import { allProducts, featuredArtisans } from '@/lib/data';
@@ -189,23 +190,16 @@ export default function ComparePage() {
                             <div className="grid gap-4 mb-6" style={{ gridTemplateColumns: `200px repeat(${comparisonProducts.length}, 1fr)` }}>
                                 <div></div> {/* Empty cell for feature labels */}
                                 {comparisonProducts.map((product) => (
-                                    <Card key={product.id} className="relative">
+                                    <div key={product.id} className="relative">
                                         <div className="absolute top-2 right-2 z-10">
                                             <CompareButton productId={product.id} size="sm" />
                                         </div>
-                                        <CardContent className="p-4">
-                                            <div className="w-full h-32 bg-gray-200 rounded-md mb-3 flex items-center justify-center">
-                                                <span className="text-gray-500 text-sm">Image</span>
-                                            </div>
-                                            <h3 className="font-semibold text-lg mb-2 pr-8 line-clamp-2">{product.name}</h3>
-                                            <div className="flex gap-2">
-                                                <Button size="sm" className="flex-1" disabled={!product.inStock}>
-                                                    {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-                                                </Button>
-                                                <WishlistButton productId={product.id} size="sm" />
-                                            </div>
-                                        </CardContent>
-                                    </Card>
+                                        <ProductCard 
+                                            product={product}
+                                            artisanName={featuredArtisans.find(a => a.id === product.artisanId)?.name}
+                                            className="h-full"
+                                        />
+                                    </div>
                                 ))}
                             </div>
 
