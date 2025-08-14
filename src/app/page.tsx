@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Rating } from '@/components/ui/rating';
 import { Navbar } from '@/components/ui/navbar';
+import { ProductCard } from '@/components/ui/product-card';
 import { featuredArtisans, latestProducts, categories } from '@/lib/data';
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/hero-background.jpg')] bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('/images/background.jpg.jpg')] bg-cover bg-center opacity-20"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-orange-100/70 to-amber-100/70"></div>
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
@@ -154,38 +155,13 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {latestProducts.map((product, index) => (
-              <Card key={product.id} className="hover-lift cursor-pointer group animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                <CardContent className="p-0">
-                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl flex items-center justify-center text-gray-500 mb-4">
-                    Product Image
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-orange-600 transition-colors">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-2">
-                      by {getArtisanName(product.artisanId)}
-                    </p>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-2xl font-bold text-green-600">
-                        ${product.price.toFixed(2)}
-                      </span>
-                      <Rating rating={product.rating} totalReviews={product.totalReviews} size="sm" />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">
-                        {product.category}
-                      </span>
-                      <span className="text-xs text-green-600 font-medium">
-                        {product.stockQuantity} in stock
-                      </span>
-                    </div>
-                    <Button className="w-full mt-3" size="sm">
-                      Add to Cart
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                <ProductCard 
+                  product={product} 
+                  artisanName={getArtisanName(product.artisanId)} 
+                  className="hover-lift"
+                />
+              </div>
             ))}
           </div>
           <div className="text-center mt-8">
