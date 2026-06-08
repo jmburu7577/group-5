@@ -1,0 +1,58 @@
+[
+    {
+        "id": "prod1",
+        "name": "Handcrafted Silver Necklace",
+        "price": 75.0,
+        "category": "Jewelry",
+        "image": "/images/Handcrafted Silver Necklace.jpg",
+        "artisanId": "artisan1",
+        "description": "Elegant sterling silver necklace with intricate Celtic knot design.",
+        "materials": [
+            "Sterling Silver",
+            "Natural Gemstones"
+        ],
+        "dimensions": "18 inches length",
+        "weight": "15g",
+        "inStock": true,
+        "stockQuantity": 5,
+        "rating": 4.9,
+        "totalReviews": 23,
+        "tags": [
+            "silver",
+            "jewelry",
+            "necklace"
+        ],
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "images": [
+            "/images/Handcrafted Silver Necklace.jpg"
+        ]
+    },
+    {
+        "id": "prod2",
+        "name": "Handcrafted Ceramic Mug",
+        "price": 24.99,
+        "category": "Pottery",
+        "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=2070&auto=format&fit=crop",
+        "artisanId": "artisan2",
+        "description": "A beautiful handcrafted ceramic mug, perfect for your morning coffee or tea.",
+        "materials": [
+            "Clay",
+            "Glaze"
+        ],
+        "dimensions": "4 x 4 inches",
+        "weight": "350g",
+        "inStock": true,
+        "stockQuantity": 12,
+        "rating": 4.8,
+        "totalReviews": 56,
+        "tags": [
+            "ceramic",
+            "mug",
+            "kitchen"
+        ],
+        "createdAt": "2024-02-14T00:00:00.000Z",
+        "images": [
+            "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=2070&auto=format&fit=crop"
+        ]
+    }
+]

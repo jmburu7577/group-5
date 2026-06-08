@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Navbar } from '@/components/ui/navbar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -29,76 +29,76 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
+
       <div className="container mx-auto px-4 py-8 flex-grow">
         <h1 className="text-3xl font-bold text-center mb-8">Contact Us</h1>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Form */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-lg">
             <CardHeader>
               <CardTitle>Send Us a Message</CardTitle>
               <CardDescription>
-                We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.
+                We would love to hear from you! Fill out the form below and we will get back to you as soon as possible.
               </CardDescription>
             </CardHeader>
             <CardContent>
               {submitted ? (
                 <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded relative mb-4">
-                  <p>Thank you for your message! We'll get back to you soon.</p>
+                  <p>Thank you for your message! We will get back to you soon.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
                   <div className="grid gap-4">
                     <div className="grid gap-2">
                       <Label htmlFor="name">Name</Label>
-                      <Input 
-                        id="name" 
+                      <Input
+                        id="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Your name" 
-                        required 
+                        placeholder="Your name"
+                        required
                       />
                     </div>
-                    
+
                     <div className="grid gap-2">
                       <Label htmlFor="email">Email</Label>
-                      <Input 
-                        id="email" 
-                        type="email" 
+                      <Input
+                        id="email"
+                        type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Your email address" 
-                        required 
+                        placeholder="Your email address"
+                        required
                       />
                     </div>
-                    
+
                     <div className="grid gap-2">
                       <Label htmlFor="message">Message</Label>
-                      <Textarea 
-                        id="message" 
+                      <Textarea
+                        id="message"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        placeholder="Your message" 
-                        className="min-h-[150px]" 
-                        required 
+                        placeholder="Your message"
+                        className="min-h-[150px]"
+                        required
                       />
                     </div>
-                    
+
                     <Button type="submit" className="w-full">Send Message</Button>
                   </div>
                 </form>
               )}
             </CardContent>
           </Card>
-          
+
           {/* Contact Information */}
           <div className="space-y-8">
             <Card className="bg-white/90 backdrop-blur-sm shadow-lg">
               <CardHeader>
                 <CardTitle>Contact Information</CardTitle>
                 <CardDescription>
-                  Here's how you can reach us directly.
+                  Here is how you can reach us directly.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -109,7 +109,7 @@ export default function ContactPage() {
                     <p className="text-gray-600">436 Nairobi, Kenya</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <Phone className="mr-3 h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
                   <div>
@@ -117,7 +117,7 @@ export default function ContactPage() {
                     <p className="text-gray-600">2547966009</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <Mail className="mr-3 h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
                   <div>
@@ -127,7 +127,7 @@ export default function ContactPage() {
                 </div>
               </CardContent>
             </Card>
-            
+
             <Card className="bg-white/90 backdrop-blur-sm shadow-lg">
               <CardHeader>
                 <CardTitle>Business Hours</CardTitle>

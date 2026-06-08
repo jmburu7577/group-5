@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { CartItem, Product } from '@/lib/data';
+import { CartItem } from '@/lib/data';
 import { getProductById } from '@/lib/data';
 
 interface CartContextType {
@@ -63,7 +63,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const addToCart = (productId: string, quantity: number = 1) => {
         setCartItems(prev => {
             const existingItemIndex = prev.findIndex(item => item.productId === productId);
-            
+
             if (existingItemIndex >= 0) {
                 // Item already exists, update quantity
                 const updatedItems = [...prev];

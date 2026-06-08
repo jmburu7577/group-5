@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/ui/navbar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
@@ -12,7 +12,7 @@ import { useAuth } from '@/contexts/AuthContext';
 export default function ProfilePage() {
   const { user, isAuthenticated, isLoading, updateProfile } = useAuth();
   const router = useRouter();
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,7 +28,7 @@ export default function ProfilePage() {
       router.push('/login');
       return;
     }
-    
+
     if (user) {
       setFormData(prev => ({
         ...prev,
@@ -49,22 +49,22 @@ export default function ProfilePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage({ text: '', type: '' });
-    
+
     // Validate password fields if user is trying to change password
     if (formData.newPassword || formData.confirmPassword) {
       if (!formData.currentPassword) {
         setMessage({ text: 'Current password is required to set a new password', type: 'error' });
         return;
       }
-      
+
       if (formData.newPassword !== formData.confirmPassword) {
         setMessage({ text: 'New passwords do not match', type: 'error' });
         return;
       }
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
       // In a real app, this would call an API endpoint
       // For demo purposes, we'll use the mock function from AuthContext
@@ -73,7 +73,7 @@ export default function ProfilePage() {
         currentPassword: formData.currentPassword,
         newPassword: formData.newPassword
       });
-      
+
       if (success) {
         setMessage({ text: 'Profile updated successfully', type: 'success' });
         // Clear password fields after successful update
@@ -108,17 +108,17 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       <Navbar />
-      
+
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-2xl mx-auto">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="mb-6"
             onClick={() => router.push('/dashboard')}
           >
             ← Back to Dashboard
           </Button>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Edit Profile</CardTitle>
@@ -130,71 +130,71 @@ export default function ProfilePage() {
                   {message.text}
                 </div>
               )}
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Full Name</Label>
-                  <Input 
-                    id="name" 
+                  <Input
+                    id="name"
                     name="name"
-                    value={formData.name} 
+                    value={formData.name}
                     onChange={handleChange}
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email" 
+                  <Input
+                    id="email"
                     name="email"
-                    value={formData.email} 
+                    value={formData.email}
                     onChange={handleChange}
                     disabled
                   />
                   <p className="text-sm text-gray-500">Email cannot be changed</p>
                 </div>
-                
+
                 <div className="pt-4 border-t">
                   <h3 className="text-lg font-medium mb-4">Change Password</h3>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="currentPassword">Current Password</Label>
-                    <Input 
-                      id="currentPassword" 
+                    <Input
+                      id="currentPassword"
                       name="currentPassword"
                       type="password"
-                      value={formData.currentPassword} 
+                      value={formData.currentPassword}
                       onChange={handleChange}
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="newPassword">New Password</Label>
-                    <Input 
-                      id="newPassword" 
+                    <Input
+                      id="newPassword"
                       name="newPassword"
                       type="password"
-                      value={formData.newPassword} 
+                      value={formData.newPassword}
                       onChange={handleChange}
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="confirmPassword">Confirm New Password</Label>
-                    <Input 
-                      id="confirmPassword" 
+                    <Input
+                      id="confirmPassword"
                       name="confirmPassword"
                       type="password"
-                      value={formData.confirmPassword} 
+                      value={formData.confirmPassword}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
-                
+
                 <div className="pt-4">
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full"
                     disabled={isSubmitting}
                   >

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Rating } from '@/components/ui/rating';
 import { Navbar } from '@/components/ui/navbar';
 import { ProductCard } from '@/components/ui/product-card';
@@ -150,15 +150,15 @@ export default function Home() {
               Latest Handcrafted Items
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Fresh from our artisans' workshops - discover the newest additions to our collection
+              Fresh from our artisans&apos; workshops - discover the newest additions to our collection
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {latestProducts.map((product, index) => (
               <div key={product.id} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                <ProductCard 
-                  product={product} 
-                  artisanName={getArtisanName(product.artisanId)} 
+                <ProductCard
+                  product={product}
+                  artisanName={getArtisanName(product.artisanId)}
                   className="hover-lift"
                 />
               </div>

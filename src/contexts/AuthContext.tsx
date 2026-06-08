@@ -68,9 +68,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return new Promise((resolve) => {
       setTimeout(() => {
         const foundUser = mockUsers.find(u => u.email === email && u.password === password);
-        
+
         if (foundUser) {
-          const { password, ...userWithoutPassword } = foundUser;
+          const userWithoutPassword = {
+            id: foundUser.id,
+            name: foundUser.name,
+            email: foundUser.email,
+            isArtisan: foundUser.isArtisan,
+          };
           setUser(userWithoutPassword);
           localStorage.setItem('user', JSON.stringify(userWithoutPassword));
           resolve(true);
@@ -88,12 +93,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setTimeout(() => {
         // Check if email already exists
         const existingUser = mockUsers.find(u => u.email === email);
-        
+
         if (existingUser) {
           resolve(false);
           return;
         }
-        
+
         // Create new user
         const newUser = {
           id: Date.now().toString(),
@@ -102,15 +107,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           password,
           isArtisan
         };
-        
+
         // In a real app, this would be saved to a database
         mockUsers.push(newUser);
-        
+
         // Set current user (without password)
-        const { password: _, ...userWithoutPassword } = newUser;
+        const userWithoutPassword = {
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+          isArtisan: newUser.isArtisan,
+        };
         setUser(userWithoutPassword);
         localStorage.setItem('user', JSON.stringify(userWithoutPassword));
-        
+
         resolve(true);
       }, 800);
     });
@@ -131,17 +141,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           resolve(false);
           return;
         }
-        
+
         // Update user data
         if (data.name) {
           const updatedUser = { ...user, name: data.name };
           setUser(updatedUser);
           localStorage.setItem('user', JSON.stringify(updatedUser));
         }
-        
+
         // In a real app, password change would be handled by the backend
         // with proper authentication
-        
+
         resolve(true);
       }, 800);
     });

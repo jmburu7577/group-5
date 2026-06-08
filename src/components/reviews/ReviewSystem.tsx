@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Rating, InteractiveRating } from '@/components/ui/rating';
-import { Review, getReviewsByProductId, getReviewsByArtisanId } from '@/lib/data';
+import { Review } from '@/lib/data';
 
 interface ReviewSystemProps {
     productId?: string;
@@ -13,6 +13,8 @@ interface ReviewSystemProps {
     reviews: Review[];
     onSubmitReview?: (review: Omit<Review, 'id' | 'createdAt'>) => void;
 }
+
+type ReviewSortOption = 'newest' | 'oldest' | 'highest' | 'lowest' | 'helpful';
 
 interface ReviewFormData {
     rating: number;
@@ -29,7 +31,7 @@ export const ReviewSystem: React.FC<ReviewSystemProps> = ({
     onSubmitReview
 }) => {
     const [showReviewForm, setShowReviewForm] = useState(false);
-    const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'highest' | 'lowest' | 'helpful'>('newest');
+    const [sortBy, setSortBy] = useState<ReviewSortOption>('newest');
     const [filterRating, setFilterRating] = useState<number>(0);
 
     const [formData, setFormData] = useState<ReviewFormData>({
@@ -164,7 +166,7 @@ export const ReviewSystem: React.FC<ReviewSystemProps> = ({
                     {/* Sort Options */}
                     <select
                         value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value as any)}
+                        onChange={(e) => setSortBy(e.target.value as ReviewSortOption)}
                         className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="newest">Newest First</option>

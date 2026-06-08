@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/ui/navbar';
 import { Button } from '@/components/ui/button';
@@ -32,10 +31,10 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       <Navbar />
-      
+
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <Card>
             <CardHeader>
@@ -64,7 +63,7 @@ export default function DashboardPage() {
               </Button>
             </CardFooter>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Activity Summary</CardTitle>
@@ -95,7 +94,7 @@ export default function DashboardPage() {
             </CardFooter>
           </Card>
         </div>
-        
+
         {user?.isArtisan && (
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Artisan Tools</h2>
@@ -113,7 +112,7 @@ export default function DashboardPage() {
                   </Button>
                 </CardFooter>
               </Card>
-              
+
               <Card>
                 <CardHeader>
                   <CardTitle>Order Fulfillment</CardTitle>
@@ -127,7 +126,7 @@ export default function DashboardPage() {
                   </Button>
                 </CardFooter>
               </Card>
-              
+
               <Card>
                 <CardHeader>
                   <CardTitle>Analytics</CardTitle>
@@ -144,7 +143,7 @@ export default function DashboardPage() {
             </div>
           </div>
         )}
-        
+
         <div className="flex justify-center">
           <Button variant="destructive" onClick={logout}>
             Logout

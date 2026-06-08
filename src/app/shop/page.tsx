@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import {
     allProducts,
@@ -9,15 +9,10 @@ import {
     searchProducts,
     filterProductsByCategory,
     filterProductsByPriceRange,
-    sortProducts,
-    type Product
+    sortProducts
 } from '@/lib/data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Rating } from '@/components/ui/rating';
-import { WishlistButton } from '@/components/ui/wishlist-button';
-import { CompareButton } from '@/components/ui/compare-button';
 import { ProductCard } from '@/components/ui/product-card';
 import { Navbar } from '@/components/ui/navbar';
 import { useComparison } from '@/contexts/ComparisonContext';
@@ -33,11 +28,6 @@ export default function ShopPage() {
 
     const { comparisonCount, clearComparison } = useComparison();
 
-    // Debounced search function
-    const debouncedSearch = useCallback((term: string) => {
-        // In a real app, this would be debounced
-        return searchProducts(term);
-    }, []);
 
     // Filter and sort products with enhanced logic
     const filteredProducts = useMemo(() => {
@@ -92,7 +82,7 @@ export default function ShopPage() {
         <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
             {/* Navigation */}
             <Navbar />
-            
+
             {/* Shop Header */}
             <div className="bg-white/80 backdrop-blur-lg border-b border-orange-200/50">
                 <div className="container mx-auto px-4 py-6">
@@ -113,7 +103,7 @@ export default function ShopPage() {
                 <div className="card-modern p-6 mb-8 animate-fade-in">
                     <div className="mb-6">
                         <h2 className="text-xl font-semibold text-gray-900 mb-2">Find Your Perfect Piece</h2>
-                        <p className="text-gray-600">Use our advanced filters to discover exactly what you're looking for</p>
+                        <p className="text-gray-600">Use our advanced filters to discover exactly what you are looking for</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-4">
                         {/* Search */}
@@ -243,7 +233,7 @@ export default function ShopPage() {
                     <div className="mt-4 flex flex-wrap gap-2 items-center">
                         {searchTerm && (
                             <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center">
-                                Search: "{searchTerm}"
+                                Search: &quot;{searchTerm}&quot;
                                 <button
                                     onClick={() => setSearchTerm('')}
                                     className="ml-2 text-blue-600 hover:text-blue-800 font-bold"
@@ -337,8 +327,8 @@ export default function ShopPage() {
                 {filteredProducts.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {filteredProducts.map((product) => (
-                            <ProductCard 
-                                key={product.id} 
+                            <ProductCard
+                                key={product.id}
                                 product={product}
                                 artisanName={getArtisanName(product.artisanId)}
                             />

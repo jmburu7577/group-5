@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getArtisanById, getProductsByArtisanId } from '@/lib/data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ui/product-card';
 
@@ -60,8 +59,8 @@ export default function SellerPage({ params }: SellerPageProps) {
         {products.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
-              <ProductCard 
-                key={product.id} 
+              <ProductCard
+                key={product.id}
                 product={product}
                 artisanName={artisan.name}
               />

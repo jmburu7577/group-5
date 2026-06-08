@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/ui/navbar';
 import { Button } from '@/components/ui/button';
@@ -37,7 +37,7 @@ const categories = [
 export default function ProductsPage() {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const router = useRouter();
-  
+
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
@@ -51,7 +51,7 @@ export default function ProductsPage() {
   });
 
   // Mock function to fetch products
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setIsLoading(true);
     // In a real app, this would be an API call
     // For demo purposes, we'll use mock data
@@ -77,26 +77,26 @@ export default function ProductsPage() {
         artisanId: user?.id || ''
       }
     ];
-    
+
     setProducts(mockProducts);
     setIsLoading(false);
-  };
+  }, [user]);
 
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
       router.push('/login');
       return;
     }
-    
+
     if (isAuthenticated && user && !user.isArtisan) {
       router.push('/');
       return;
     }
-    
+
     if (isAuthenticated && user?.isArtisan) {
       fetchProducts();
     }
-  }, [authLoading, isAuthenticated, user, router]);
+  }, [authLoading, isAuthenticated, user, router, fetchProducts]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -132,10 +132,10 @@ export default function ProductsPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (currentProduct.id) {
       // Update existing product
-      setProducts(prev => 
+      setProducts(prev =>
         prev.map(p => p.id === currentProduct.id ? { ...p, ...currentProduct } as Product : p)
       );
     } else {
@@ -145,10 +145,10 @@ export default function ProductsPage() {
         id: Date.now().toString(),
         artisanId: user?.id || ''
       } as Product;
-      
+
       setProducts(prev => [...prev, newProduct]);
     }
-    
+
     setIsEditing(false);
     setCurrentProduct({
       name: '',
@@ -178,7 +178,7 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       <Navbar />
-      
+
       <div className="container mx-auto px-4 py-12">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">Product Management</h1>
@@ -186,7 +186,7 @@ export default function ProductsPage() {
             <Button onClick={handleAddProduct}>Add New Product</Button>
           )}
         </div>
-        
+
         {isEditing ? (
           <Card className="mb-8">
             <CardHeader>
@@ -200,33 +200,33 @@ export default function ProductsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Product Name</Label>
-                    <Input 
-                      id="name" 
+                    <Input
+                      id="name"
                       name="name"
-                      value={currentProduct.name} 
+                      value={currentProduct.name}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="price">Price ($)</Label>
-                    <Input 
-                      id="price" 
+                    <Input
+                      id="price"
                       name="price"
-                      type="number" 
+                      type="number"
                       step="0.01"
                       min="0"
-                      value={currentProduct.price} 
+                      value={currentProduct.price}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="category">Category</Label>
-                    <Select 
-                      value={currentProduct.category} 
+                    <Select
+                      value={currentProduct.category}
                       onValueChange={handleSelectChange}
                     >
                       <SelectTrigger>
@@ -241,48 +241,48 @@ export default function ProductsPage() {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="stock">Stock</Label>
-                    <Input 
-                      id="stock" 
+                    <Input
+                      id="stock"
                       name="stock"
-                      type="number" 
+                      type="number"
                       min="0"
-                      value={currentProduct.stock} 
+                      value={currentProduct.stock}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="imageUrl">Image URL</Label>
-                  <Input 
-                    id="imageUrl" 
+                  <Input
+                    id="imageUrl"
                     name="imageUrl"
-                    value={currentProduct.imageUrl} 
+                    value={currentProduct.imageUrl}
                     onChange={handleInputChange}
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="description">Description</Label>
-                  <Textarea 
-                    id="description" 
+                  <Textarea
+                    id="description"
                     name="description"
                     rows={4}
-                    value={currentProduct.description} 
+                    value={currentProduct.description}
                     onChange={handleInputChange}
                     required
                   />
                 </div>
-                
+
                 <div className="flex justify-end space-x-2">
-                  <Button 
-                    type="button" 
-                    variant="outline" 
+                  <Button
+                    type="button"
+                    variant="outline"
                     onClick={() => setIsEditing(false)}
                   >
                     Cancel
@@ -304,9 +304,9 @@ export default function ProductsPage() {
               products.map(product => (
                 <Card key={product.id} className="overflow-hidden">
                   <div className="h-48 overflow-hidden">
-                    <img 
-                      src={product.imageUrl} 
-                      alt={product.name} 
+                    <img
+                      src={product.imageUrl}
+                      alt={product.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -317,15 +317,15 @@ export default function ProductsPage() {
                   <CardContent>
                     <p className="text-sm text-gray-600 mb-4">{product.description}</p>
                     <div className="flex justify-between">
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         size="sm"
                         onClick={() => handleEditProduct(product)}
                       >
                         Edit
                       </Button>
-                      <Button 
-                        variant="destructive" 
+                      <Button
+                        variant="destructive"
                         size="sm"
                         onClick={() => handleDeleteProduct(product.id)}
                       >

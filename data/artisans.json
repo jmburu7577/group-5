@@ -1,0 +1,36 @@
+[
+    {
+        "id": "artisan1",
+        "name": "Elena Rodriguez",
+        "specialty": "Jewelry",
+        "description": "Passionate jewelry maker creating unique handcrafted pieces inspired by nature and tradition.",
+        "image": "/images/artisan1.jpg",
+        "location": "Santa Fe, NM",
+        "yearsExperience": 8,
+        "rating": 4.8,
+        "totalReviews": 127,
+        "verified": true,
+        "joinedDate": "2020-03-15T00:00:00.000Z",
+        "socialLinks": {
+            "website": "https://elenajewelry.com",
+            "instagram": "@elena_handmade_jewelry"
+        }
+    },
+    {
+        "id": "artisan2",
+        "name": "Marcus Chen",
+        "specialty": "Pottery",
+        "description": "Master potter known for intricate designs and beautiful functional ceramics.",
+        "image": "/images/artisan2.jpg",
+        "location": "Portland, OR",
+        "yearsExperience": 12,
+        "rating": 4.9,
+        "totalReviews": 89,
+        "verified": true,
+        "joinedDate": "2019-08-22T00:00:00.000Z",
+        "socialLinks": {
+            "website": "https://chenceramics.com",
+            "instagram": "@marcus_pottery"
+        }
+    }
+]

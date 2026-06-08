@@ -15,7 +15,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const { login } = useAuth();
   const router = useRouter();
 
@@ -23,7 +23,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
     setIsLoading(true);
-    
+
     try {
       const success = await login(email, password);
       if (success) {
@@ -42,7 +42,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       <Navbar />
-      
+
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-md mx-auto">
           <Card>
@@ -59,19 +59,19 @@ export default function LoginPage() {
                     {error}
                   </div>
                 )}
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="your.email@example.com" 
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your.email@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="password">Password</Label>
@@ -79,9 +79,9 @@ export default function LoginPage() {
                       Forgot password?
                     </Link>
                   </div>
-                  <Input 
-                    id="password" 
-                    type="password" 
+                  <Input
+                    id="password"
+                    type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -101,7 +101,7 @@ export default function LoginPage() {
             </CardContent>
             <CardFooter className="flex flex-col">
               <div className="text-center text-sm mt-2">
-                Don't have an account?{' '}
+                Do you not have an account?{' '}
                 <Link href="/register" className="text-blue-600 hover:underline">
                   Register
                 </Link>
