@@ -6,165 +6,110 @@ type User = {
   id: string;
   name: string;
   email: string;
-  isArtisan: boolean;
 };
 
 type AuthContextType = {
   user: User | null;
+  token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<boolean>;
-  register: (name: string, email: string, password: string, isArtisan: boolean) => Promise<boolean>;
+  register: (name: string, email: string, password: string) => Promise<boolean>;
   logout: () => void;
-  updateProfile: (data: { name?: string; currentPassword?: string; newPassword?: string }) => Promise<boolean>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Mock users for demo purposes
-  const mockUsers = [
-    {
-      id: '1',
-      name: 'Demo User',
-      email: 'user@example.com',
-      password: 'password',
-      isArtisan: false
-    },
-    {
-      id: '2',
-      name: 'Demo Artisan',
-      email: 'artisan@example.com',
-      password: 'password',
-      isArtisan: true
-    }
-  ];
 
   // Check for existing session on load
   useEffect(() => {
     const checkAuth = () => {
       const storedUser = localStorage.getItem('user');
-      if (storedUser) {
+      const storedToken = localStorage.getItem('token');
+      if (storedUser && storedToken) {
         try {
           setUser(JSON.parse(storedUser));
+          setToken(storedToken);
         } catch (error) {
           console.error('Failed to parse stored user:', error);
           localStorage.removeItem('user');
+          localStorage.removeItem('token');
         }
       }
       setIsLoading(false);
     };
 
-    // Simulate network delay for demo purposes
-    setTimeout(checkAuth, 500);
+    checkAuth();
   }, []);
 
-  // Mock login function
+  // Real login function
   const login = async (email: string, password: string): Promise<boolean> => {
-    // Simulate API call
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const foundUser = mockUsers.find(u => u.email === email && u.password === password);
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-        if (foundUser) {
-          const userWithoutPassword = {
-            id: foundUser.id,
-            name: foundUser.name,
-            email: foundUser.email,
-            isArtisan: foundUser.isArtisan,
-          };
-          setUser(userWithoutPassword);
-          localStorage.setItem('user', JSON.stringify(userWithoutPassword));
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      }, 800);
-    });
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+        setToken(data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Login error:', error);
+      return false;
+    }
   };
 
-  // Mock register function
-  const register = async (name: string, email: string, password: string, isArtisan: boolean): Promise<boolean> => {
-    // Simulate API call
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        // Check if email already exists
-        const existingUser = mockUsers.find(u => u.email === email);
+  // Real register function
+  const register = async (name: string, email: string, password: string): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
 
-        if (existingUser) {
-          resolve(false);
-          return;
-        }
-
-        // Create new user
-        const newUser = {
-          id: Date.now().toString(),
-          name,
-          email,
-          password,
-          isArtisan
-        };
-
-        // In a real app, this would be saved to a database
-        mockUsers.push(newUser);
-
-        // Set current user (without password)
-        const userWithoutPassword = {
-          id: newUser.id,
-          name: newUser.name,
-          email: newUser.email,
-          isArtisan: newUser.isArtisan,
-        };
-        setUser(userWithoutPassword);
-        localStorage.setItem('user', JSON.stringify(userWithoutPassword));
-
-        resolve(true);
-      }, 800);
-    });
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+        setToken(data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Registration error:', error);
+      return false;
+    }
   };
 
   // Logout function
   const logout = () => {
     setUser(null);
+    setToken(null);
     localStorage.removeItem('user');
-  };
-
-  // Update profile function
-  const updateProfile = async (data: { name?: string; currentPassword?: string; newPassword?: string }): Promise<boolean> => {
-    // Simulate API call
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (!user) {
-          resolve(false);
-          return;
-        }
-
-        // Update user data
-        if (data.name) {
-          const updatedUser = { ...user, name: data.name };
-          setUser(updatedUser);
-          localStorage.setItem('user', JSON.stringify(updatedUser));
-        }
-
-        // In a real app, password change would be handled by the backend
-        // with proper authentication
-
-        resolve(true);
-      }, 800);
-    });
+    localStorage.removeItem('token');
   };
 
   const value = {
     user,
-    isAuthenticated: !!user,
+    token,
+    isAuthenticated: !!user && !!token,
     isLoading,
     login,
     register,
     logout,
-    updateProfile
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

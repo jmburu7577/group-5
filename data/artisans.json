@@ -1,36 +1,104 @@
 [
-    {
-        "id": "artisan1",
-        "name": "Elena Rodriguez",
-        "specialty": "Jewelry",
-        "description": "Passionate jewelry maker creating unique handcrafted pieces inspired by nature and tradition.",
-        "image": "/images/artisan1.jpg",
-        "location": "Santa Fe, NM",
-        "yearsExperience": 8,
-        "rating": 4.8,
-        "totalReviews": 127,
-        "verified": true,
-        "joinedDate": "2020-03-15T00:00:00.000Z",
-        "socialLinks": {
-            "website": "https://elenajewelry.com",
-            "instagram": "@elena_handmade_jewelry"
-        }
-    },
-    {
-        "id": "artisan2",
-        "name": "Marcus Chen",
-        "specialty": "Pottery",
-        "description": "Master potter known for intricate designs and beautiful functional ceramics.",
-        "image": "/images/artisan2.jpg",
-        "location": "Portland, OR",
-        "yearsExperience": 12,
-        "rating": 4.9,
-        "totalReviews": 89,
-        "verified": true,
-        "joinedDate": "2019-08-22T00:00:00.000Z",
-        "socialLinks": {
-            "website": "https://chenceramics.com",
-            "instagram": "@marcus_pottery"
-        }
+  {
+    "id": "artisan1",
+    "name": "Elena Rodriguez",
+    "specialty": "Jewelry",
+    "description": "Passionate jewelry maker creating unique, handcrafted pieces inspired by nature and traditional techniques.",
+    "image": "/images/artisan1.jpg",
+    "location": "Santa Fe, NM",
+    "yearsExperience": 8,
+    "rating": 4.8,
+    "totalReviews": 127,
+    "verified": true,
+    "joinedDate": "2020-03-15T00:00:00.000Z",
+    "socialLinks": {
+      "website": "https://elenajewelry.com",
+      "instagram": "@elena_handmade_jewelry"
     }
+  },
+  {
+    "id": "artisan2",
+    "name": "Marcus Chen",
+    "specialty": "Pottery",
+    "description": "Master potter known for intricate designs and durable ceramics, blending Eastern and Western techniques.",
+    "image": "/images/artisan2.jpg",
+    "location": "Portland, OR",
+    "yearsExperience": 12,
+    "rating": 4.9,
+    "totalReviews": 89,
+    "verified": true,
+    "joinedDate": "2019-08-22T00:00:00.000Z",
+    "socialLinks": {
+      "website": "https://chenceramics.com",
+      "instagram": "@marcus_pottery"
+    }
+  },
+  {
+    "id": "artisan3",
+    "name": "Sarah Thompson",
+    "specialty": "Textiles",
+    "description": "Textile artist weaving stories into every fabric, specializing in sustainable and organic materials.",
+    "image": "/images/artisan3.jpg",
+    "location": "Asheville, NC",
+    "yearsExperience": 6,
+    "rating": 4.7,
+    "totalReviews": 156,
+    "verified": true,
+    "joinedDate": "2021-01-10T00:00:00.000Z",
+    "socialLinks": {
+      "website": "https://sarahtextiles.com",
+      "instagram": "@sarah_weaves"
+    }
+  },
+  {
+    "id": "artisan4",
+    "name": "David Woodson",
+    "specialty": "Woodwork",
+    "description": "Master woodworker crafting beautiful furniture and decorative pieces using traditional joinery techniques.",
+    "image": "/images/artisan4.jpg",
+    "location": "Burlington, VT",
+    "yearsExperience": 15,
+    "rating": 4.9,
+    "totalReviews": 112,
+    "verified": true,
+    "joinedDate": "2019-05-18T00:00:00.000Z",
+    "socialLinks": {
+      "website": "https://woodsoncraft.com",
+      "instagram": "@david_woodcraft"
+    }
+  },
+  {
+    "id": "artisan5",
+    "name": "Amara Okafor",
+    "specialty": "Painting",
+    "description": "Contemporary artist creating vibrant paintings inspired by her Nigerian heritage and natural landscapes.",
+    "image": "/images/artisan5.jpg",
+    "location": "Austin, TX",
+    "yearsExperience": 9,
+    "rating": 4.8,
+    "totalReviews": 78,
+    "verified": true,
+    "joinedDate": "2020-11-05T00:00:00.000Z",
+    "socialLinks": {
+      "website": "https://amaraart.com",
+      "instagram": "@amara_paints"
+    }
+  },
+  {
+    "id": "artisan6",
+    "name": "Miguel Sanchez",
+    "specialty": "Sculpture",
+    "description": "Innovative sculptor working with recycled materials to create thought-provoking pieces that challenge perceptions.",
+    "image": "/images/artisan6.jpg",
+    "location": "Tucson, AZ",
+    "yearsExperience": 11,
+    "rating": 4.7,
+    "totalReviews": 93,
+    "verified": true,
+    "joinedDate": "2021-03-22T00:00:00.000Z",
+    "socialLinks": {
+      "website": "https://miguelsculpture.com",
+      "instagram": "@miguel_creates"
+    }
+  }
 ]

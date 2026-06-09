@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function RegisterPage() {
@@ -16,7 +15,6 @@ export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isArtisan, setIsArtisan] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
@@ -35,11 +33,11 @@ export default function RegisterPage() {
     setIsLoading(true);
     
     try {
-      const success = await register(name, email, password, isArtisan);
+      const success = await register(name, email, password);
       if (success) {
         router.push('/');
       } else {
-        setError('Registration failed. Please try again.');
+        setError('Registration failed. Email may already be in use.');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
@@ -114,20 +112,6 @@ export default function RegisterPage() {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                   />
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <Checkbox 
-                    id="isArtisan" 
-                    checked={isArtisan}
-                    onCheckedChange={(checked) => setIsArtisan(checked === true)}
-                  />
-                  <label
-                    htmlFor="isArtisan"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    I want to sell products as an artisan
-                  </label>
                 </div>
 
                 <Button type="submit" className="w-full" disabled={isLoading}>
