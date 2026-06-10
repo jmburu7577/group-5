@@ -7,7 +7,7 @@ function createErrorResponse(message: string, status = 500) {
     return NextResponse.json({ error: message }, { status });
 }
 
-export async function GET(_request: Request, { params }: { params: { id: string }) {
+export async function GET(_request: Request, { params }: { params: { id: string } }) {
     try {
         const product = await getProductById(params.id);
 
@@ -21,7 +21,7 @@ export async function GET(_request: Request, { params }: { params: { id: string 
     }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string }) {
+export async function PUT(request: Request, { params }: { params: { id: string } }) {
     try {
         const session = await getServerSession(authOptions);
         if (!session) {
@@ -46,7 +46,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
 }
 
-export async function DELETE(_request: Request, { params }: { params: { id: string }) {
+export async function DELETE(_request: Request, { params }: { params: { id: string } }) {
     try {
         const session = await getServerSession(authOptions);
         if (!session) {
