@@ -228,7 +228,7 @@ export async function getUserByEmail(email: string): Promise<UserType | undefine
 }
 
 export async function createUser(
-  newUser: Omit<UserType, 'id' | 'createdAt' | 'orders' | 'reviews' | 'cart' | 'wishlist' | 'preferences'> & { password: string }
+  newUser: Omit<UserType, 'id' | 'createdAt' | 'orders' | 'reviews' | 'cart' | 'wishlist' | 'preferences'> & { password?: string }
 ): Promise<UserType> {
   try {
     if (process.env.MONGODB_URI) {

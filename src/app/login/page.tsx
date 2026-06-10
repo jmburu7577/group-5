@@ -5,11 +5,9 @@ import Link from 'next/link';
 import { Navbar } from '@/components/ui/navbar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/contexts/AuthContext';
+import { signIn } from 'next-auth/react';
 
 export default function LoginPage() {
-  const { login } = useAuth();
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       <Navbar />
@@ -26,14 +24,14 @@ export default function LoginPage() {
             <CardContent className="space-y-4">
               <Button
                 className="w-full"
-                onClick={() => login('github')}
+                onClick={() => signIn('github', { callbackUrl: '/' })}
               >
                 Sign in with GitHub
               </Button>
 
               <Button
                 className="w-full"
-                onClick={() => login('google')}
+                onClick={() => signIn('google', { callbackUrl: '/' })}
               >
                 Sign in with Google
               </Button>

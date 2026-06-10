@@ -6,12 +6,13 @@ import { Heart, ShoppingBag, User, LogIn, LogOut } from 'lucide-react';
 import { CartIcon } from '@/components/ui/cart-icon';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { useComparison } from '@/contexts/ComparisonContext';
-import { useAuth } from '@/contexts/AuthContext';
+import { useSession, signOut } from 'next-auth/react';
 
 export function Navbar() {
   const { wishlistCount } = useWishlist();
   const { comparisonCount } = useComparison();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { data: session, status } = useSession();
+  const isAuthenticated = !!session;
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-orange-200/50">
@@ -65,7 +66,7 @@ export function Navbar() {
                 <Link href="/dashboard" className="relative">
                   <User className="w-6 h-6 text-gray-700 hover:text-orange-600 transition-colors" />
                 </Link>
-                <button onClick={logout} className="p-2">
+                <button onClick={() => signOut({ callbackUrl: '/' })} className="p-2">
                   <LogOut className="w-6 h-6 text-gray-700 hover:text-orange-600 transition-colors" />
                 </button>
               </>

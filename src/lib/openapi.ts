@@ -158,6 +158,59 @@ export const openApiSpec = {
                     },
                 },
             },
+            post: {
+                summary: 'Create a new user',
+                requestBody: {
+                    required: true,
+                    content: {
+                        'application/json': {
+                            schema: {
+                                type: 'object',
+                                properties: {
+                                    name: { type: 'string' },
+                                    email: { type: 'string' },
+                                    avatar: { type: 'string' },
+                                },
+                                required: ['name', 'email'],
+                            },
+                        },
+                    },
+                },
+                responses: {
+                    '201': {
+                        description: 'User created',
+                        content: {
+                            'application/json': {
+                                schema: { $ref: '#/components/schemas/User' },
+                            },
+                        },
+                    },
+                    '400': {
+                        description: 'Invalid request',
+                        content: {
+                            'application/json': {
+                                schema: { $ref: '#/components/schemas/Error' },
+                            },
+                        },
+                    },
+                    '401': {
+                        description: 'Unauthorized',
+                        content: {
+                            'application/json': {
+                                schema: { $ref: '#/components/schemas/Error' },
+                            },
+                        },
+                    },
+                    '500': {
+                        description: 'Server error',
+                        content: {
+                            'application/json': {
+                                schema: { $ref: '#/components/schemas/Error' },
+                            },
+                        },
+                    },
+                },
+            },
         },
         '/api/users/{id}': {
             parameters: [
@@ -230,6 +283,14 @@ export const openApiSpec = {
                             },
                         },
                     },
+                    '401': {
+                        description: 'Unauthorized',
+                        content: {
+                            'application/json': {
+                                schema: { $ref: '#/components/schemas/Error' },
+                            },
+                        },
+                    },
                     '404': {
                         description: 'User not found',
                         content: {
@@ -244,6 +305,14 @@ export const openApiSpec = {
                 summary: 'Delete a user',
                 responses: {
                     '204': { description: 'User deleted' },
+                    '401': {
+                        description: 'Unauthorized',
+                        content: {
+                            'application/json': {
+                                schema: { $ref: '#/components/schemas/Error' },
+                            },
+                        },
+                    },
                     '404': {
                         description: 'User not found',
                         content: {
