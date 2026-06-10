@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { deleteArtisan, getArtisanById, updateArtisan } from '@/lib/api-data';
+import { auth } from '@/app/api/auth/[...nextauth]/route';
 
 function createErrorResponse(message: string, status = 500) {
     return NextResponse.json({ error: message }, { status });
@@ -21,6 +22,11 @@ export async function GET(_request: Request, { params }: { params: { id: string 
 
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
     try {
+        const session = await auth();
+        if (!session) {
+            return createErrorResponse('Unauthorized', 401);
+        }
+
         const body = await request.json();
 
         if (!body || typeof body !== 'object') {
@@ -41,6 +47,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 
 export async function DELETE(_request: Request, { params }: { params: { id: string } }) {
     try {
+        const session = await auth();
+        if (!session) {
+            return createErrorResponse('Unauthorized', 401);
+        }
+
         const deleted = await deleteArtisan(params.id);
 
         if (!deleted) {

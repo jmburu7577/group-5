@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Heart, ShoppingBag, User, LogIn } from 'lucide-react';
+import { Heart, ShoppingBag, User, LogIn, LogOut } from 'lucide-react';
 import { CartIcon } from '@/components/ui/cart-icon';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { useComparison } from '@/contexts/ComparisonContext';
@@ -11,7 +11,7 @@ import { useAuth } from '@/contexts/AuthContext';
 export function Navbar() {
   const { wishlistCount } = useWishlist();
   const { comparisonCount } = useComparison();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-orange-200/50">
@@ -61,12 +61,14 @@ export function Navbar() {
             <CartIcon size="lg" className="text-gray-700 hover:text-orange-600 transition-colors" />
             
             {isAuthenticated ? (
-              <Link href="/dashboard" className="relative">
-                <User className="w-6 h-6 text-gray-700 hover:text-orange-600 transition-colors" />
-                {user?.isArtisan && (
-                  <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold rounded-full w-2 h-2"></span>
-                )}
-              </Link>
+              <>
+                <Link href="/dashboard" className="relative">
+                  <User className="w-6 h-6 text-gray-700 hover:text-orange-600 transition-colors" />
+                </Link>
+                <button onClick={logout} className="p-2">
+                  <LogOut className="w-6 h-6 text-gray-700 hover:text-orange-600 transition-colors" />
+                </button>
+              </>
             ) : (
               <Link href="/login" className="relative">
                 <LogIn className="w-6 h-6 text-gray-700 hover:text-orange-600 transition-colors" />

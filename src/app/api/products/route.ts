@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createProduct, getProducts } from '@/lib/api-data';
+import { auth } from '@/app/api/auth/[...nextauth]/route';
 
 function createErrorResponse(message: string, status = 500) {
     return NextResponse.json({ error: message }, { status });
@@ -16,6 +17,11 @@ export async function GET() {
 
 export async function POST(request: Request) {
     try {
+        const session = await auth();
+        if (!session) {
+            return createErrorResponse('Unauthorized', 401);
+        }
+
         const body = await request.json();
 
         if (!body?.name || typeof body.price !== 'number' || !body?.category || !body?.artisanId || !body?.description) {
