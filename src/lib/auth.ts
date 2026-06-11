@@ -1,6 +1,8 @@
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { NextAuthOptions } from 'next-auth';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,9 +18,10 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.AUTH_SECRET,
   pages: {
     signIn: '/login',
+    error: '/login',
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account, profile }) {
       if (user) {
         token.id = user.id;
       }
@@ -32,3 +35,16 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
+
+export async function hashPassword(password: string): Promise<string> {
+  const saltRounds = 10;
+  return bcrypt.hash(password, saltRounds);
+}
+
+export async function comparePassword(password: string, hash: string): Promise<boolean> {
+  return bcrypt.compare(password, hash);
+}
+
+export function generateToken(id: string, email: string): string {
+  return jwt.sign({ id, email }, process.env.JWT_SECRET || 'fallback-secret', { expiresIn: '7d' });
+}
